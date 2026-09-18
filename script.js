@@ -10,4 +10,4 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll(".feature, .download-box, .faq-list").forEach((el) => {
   el.classList.add("reveal");
   observer.observe(el);
-})
+});
