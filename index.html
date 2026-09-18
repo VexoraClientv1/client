@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vexora Client</title>
+<meta name="description" content="Vexora Client – moderner Minecraft Client für Windows.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,Arial,sans-serif;background:#07050d;color:#fff;line-height:1.6;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+body:before{content:"";position:fixed;width:700px;height:700px;left:50%;top:-380px;transform:translateX(-50%);background:#8b3dff;filter:blur(180px);opacity:.2;z-index:-2}
+body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:-3;opacity:.28;background-image:linear-gradient(rgba(160,90,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(160,90,255,.07) 1px,transparent 1px);background-size:50px 50px}
+.nav{max-width:1200px;margin:auto;padding:25px 28px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:2px}
+.logo-mark{display:grid;place-items:center;width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#b66cff,#6325ff);box-shadow:0 0 25px rgba(150,70,255,.45)}
+nav{display:flex;gap:30px;color:#aaa}
+nav a:hover{color:#fff}
+.nav-button{padding:11px 18px;border-radius:11px;background:#fff;color:#08060d;font-weight:700}
+.hero{max-width:1200px;margin:auto;min-height:650px;padding:80px 28px 100px;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:70px}
+.badge{display:inline-flex;align-items:center;gap:9px;padding:7px 12px;border:1px solid #33244e;border-radius:999px;background:#110c1b;color:#c9b7df;font-size:13px}
+.badge span{width:7px;height:7px;border-radius:50%;background:#a85dff;box-shadow:0 0 12px #a85dff}
+h1{font-size:clamp(60px,8vw,105px);line-height:.9;letter-spacing:-5px;margin:25px 0}
+h1 em{font-style:normal;color:#a85dff}
+.hero-text{max-width:560px;color:#aaa;font-size:17px}
+.actions{display:flex;gap:13px;margin-top:30px;flex-wrap:wrap}
+.button{display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:14px 21px;border-radius:12px;font-weight:700;transition:.2s}
+.button:hover{transform:translateY(-2px)}
+.primary{background:linear-gradient(135deg,#b36aff,#7130ff);box-shadow:0 10px 35px rgba(123,50,255,.3)}
+.secondary{border:1px solid #332c3d;color:#ddd;background:#100d15}
+.note{margin-top:17px;color:#777;font-size:12px}
+.window{border:1px solid #352449;border-radius:18px;overflow:hidden;background:linear-gradient(145deg,#161020,#0b0910);box-shadow:0 30px 100px rgba(0,0,0,.6)}
+.top{height:48px;border-bottom:1px solid #2a2036;display:flex;align-items:center;justify-content:space-between;padding:0 18px;font-size:11px;color:#888;letter-spacing:1px}
+.dots{display:flex;gap:6px}.dots i{width:7px;height:7px;border-radius:50%;background:#51465d}.online{color:#a9ffbd}
+.window-body{min-height:370px;padding:55px 42px;display:flex;align-items:center;gap:30px}
+.v{width:115px;height:115px;flex:none;border-radius:28px;display:grid;place-items:center;font-size:68px;font-weight:900;background:linear-gradient(135deg,#a95cff,#6025ff);box-shadow:0 20px 50px rgba(126,42,255,.3)}
+.eyebrow{font-size:11px;letter-spacing:2px;color:#9b73c8;font-weight:800}
+.window h2{font-size:30px;margin:7px 0}.muted{color:#888}
+.stats{display:flex;gap:28px;margin-top:30px}.stats strong{display:block;font-size:15px}.stats small{color:#666;letter-spacing:1px}
+.section{max-width:1200px;margin:auto;padding:95px 28px}
+.heading h2{font-size:48px;line-height:1.05;margin-top:10px;letter-spacing:-2px}.heading h2 span{color:#a85dff}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:45px}
+.card{padding:30px;border:1px solid #2b2135;background:#0e0a13;border-radius:18px}.icon{font-size:25px;margin-bottom:18px}.card h3{font-size:21px;margin-bottom:8px}.card p{color:#888;font-size:14px}
+.download-box{display:flex;align-items:center;justify-content:space-between;gap:30px;padding:45px;border-radius:22px;border:1px solid #3a2750;background:radial-gradient(circle at 80% 20%,rgba(144,61,255,.2),transparent 45%),#100b17}
+.download-box h2{font-size:40px}.download-box p:not(.eyebrow){color:#888;margin-top:5px}.large{padding:16px 26px}
+.faq{margin-top:0}.faq-list{margin-top:40px;border-top:1px solid #29212f}.faq-list details{border-bottom:1px solid #29212f;padding:22px 0}.faq-list summary{cursor:pointer;font-weight:600}.faq-list p{color:#888;padding-top:12px}
+footer{max-width:1200px;margin:auto;padding:35px 28px 50px;border-top:1px solid #1f1827;display:flex;align-items:center;justify-content:space-between;color:#666;font-size:12px}
+@media(max-width:800px){nav{display:none}.hero{grid-template-columns:1fr;padding-top:55px}.grid{grid-template-columns:1fr}.download-box{flex-direction:column;align-items:flex-start}.window-body{padding:40px 25px}.v{width:85px;height:85px;font-size:48px}.heading h2{font-size:38px}footer{flex-direction:column;gap:18px}}
+</style>
+</head>
+<body>
+<header class="nav">
+<a class="logo" href="#home"><span class="logo-mark">V</span><span>VEXORA</span></a>
+<nav><a href="#features">Features</a><a href="#download">Download</a><a href="#faq">FAQ</a></nav>
+<a class="nav-button" href="#download">Download</a>
+</header>
+
+<main id="home">
+<section class="hero">
+<div>
+<div class="badge"><span></span> Vexora Client · Windows</div>
+<h1>PLAY<br><em>BEYOND.</em></h1>
+<p class="hero-text">Vexora ist dein moderner Minecraft Client – schnell, übersichtlich und für ein angenehmes Spielerlebnis entwickelt.</p>
+<div class="actions">
+<a class="button primary" href="https://github.com/vexoraclient/vexoraclient.github.io/releases/latest/download/Vexora-Client-Setup.exe">Download starten ↓</a>
+<a class="button secondary" href="#features">Mehr erfahren</a>
+</div>
+<p class="note">Windows · Version 1.0.0 · Installer (.exe)</p>
+</div>
+<div class="window">
+<div class="top"><div class="dots"><i></i><i></i><i></i></div><span>VEXORA CLIENT</span><span class="online">● ONLINE</span></div>
+<div class="window-body"><div class="v">V</div><div><p class="eyebrow">WELCOME BACK</p><h2>Vexora Client</h2><p class="muted">Ready to enter the world?</p><div class="stats"><div><strong>1.0.0</strong><small>VERSION</small></div><div><strong>Windows</strong><small>PLATFORM</small></div></div></div></div>
+</div>
+</section>
+
+<section class="section" id="features">
+<div class="heading"><p class="eyebrow">WHY VEXORA</p><h2>Gebaut für dein<br><span>Minecraft.</span></h2></div>
+<div class="grid">
+<div class="card"><div class="icon">⚡</div><h3>Schnell</h3><p>Ein schlanker Client mit Fokus auf ein flüssiges und angenehmes Erlebnis.</p></div>
+<div class="card"><div class="icon">◈</div><h3>Modern</h3><p>Klare Oberfläche und ein modernes Design, das sich auf das Wesentliche konzentriert.</p></div>
+<div class="card"><div class="icon">✓</div><h3>Einfach</h3><p>Installer starten, installieren und loslegen – ohne komplizierte Einrichtung.</p></div>
+</div>
+</section>
+
+<section class="section" id="download">
+<div class="download-box">
+<div><p class="eyebrow">READY?</p><h2>Hol dir Vexora.</h2><p>Installiere die aktuelle Windows-Version und starte deinen Client.</p></div>
+<a class="button primary large" href="https://github.com/vexoraclient/vexoraclient.github.io/releases/latest/download/Vexora-Client-Setup.exe">Download Vexora ↓</a>
+</div>
+</section>
+
+<section class="section faq" id="faq">
+<div class="heading"><p class="eyebrow">FAQ</p><h2>Häufige Fragen</h2></div>
+<div class="faq-list">
+<details><summary>Für welches Betriebssystem ist Vexora?</summary><p>Diese Website ist aktuell für die Windows-Version des Vexora Clients eingerichtet.</p></details>
+<details><summary>Wie installiere ich Vexora?</summary><p>Lade den Installer herunter, starte die .exe und folge den Schritten des Installationsprogramms.</p></details>
+<details><summary>Wo bekomme ich Updates?</summary><p>Neue Versionen kannst du als GitHub Release veröffentlichen. Der Download-Button verwendet automatisch das neueste Release.</p></details>
+</div>
+</section>
+</main>
+
+<footer><div class="logo"><span class="logo-mark">V</span><span>VEXORA</span></div><p>© 2026 Vexora Client. All rights reserved.</p></footer>
+</body>
+</html>
