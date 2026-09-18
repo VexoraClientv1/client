@@ -1,4 +1,3 @@
-// Vexora Client – kleine Scroll-Reveal-Animation ohne externe JavaScript-Bibliotheken.
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
